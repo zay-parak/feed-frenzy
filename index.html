@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feed Frenzy</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- top nav -->
+  <nav class="topnav">
+    <div class="topnav-logo">feedfrenzy</div>
+    <div class="topnav-icons">
+      <div class="nav-icon-btn">🔔<span class="notif-dot"></span></div>
+      <div class="nav-icon-btn">💬</div>
+      <div class="nav-avatar">FF</div>
+    </div>
+  </nav>
+
+
+  <!-- start screen -->
+  <div id="start-screen" class="screen active">
+
+    <div class="start-profile-card">
+      <div class="profile-cover">
+        <div class="profile-cover-text">You are the algorithm</div>
+      </div>
+      <div class="profile-body">
+        <div class="profile-pic">⚡</div>
+        <div class="profile-name">Feed Frenzy</div>
+        <div class="profile-handle">@feedfrenzy · Algorithm Simulator</div>
+        <div class="profile-bio">
+          A flood of posts hits the feed every second.<br>
+          <strong>You are the algorithm.</strong> Boost good content, hide harmful posts, and skip what doesn't matter —
+          but watch out for ads in disguise, rage-bait, and misinformation. Keep the engagement score above zero before
+          the clock runs out.
+        </div>
+        <div class="profile-stats">
+          <span><strong>15</strong> Posts</span>
+          <span><strong>3</strong> Levels</span>
+          <span><strong>∞</strong> Replays</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rules-section">
+      <div class="rules-section-title">How to play</div>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <span class="icon">🚀</span>
+          <strong>Boost</strong>
+          Quality content the user loves. +engagement.
+        </div>
+        <div class="rule-card">
+          <span class="icon">🙈</span>
+          <strong>Hide</strong>
+          Harmful, spammy, or toxic posts. Saves user trust.
+        </div>
+        <div class="rule-card">
+          <span class="icon">⏭️</span>
+          <strong>Skip</strong>
+          Neutral — costs nothing, gains nothing.
+        </div>
+        <div class="rule-card">
+          <span class="icon">⚠️</span>
+          <strong>Watch out</strong>
+          Ads in disguise, rage-bait, and misinformation appear as levels rise.
+        </div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="startGame()">Start the Feed →</button>
+  </div>
+
+
+  <!-- game screen -->
+  <div id="game-screen" class="screen">
+
+    <!-- HUD -->
+    <div class="hud">
+      <div class="hud-stat">
+        <span class="hud-label">Score</span>
+        <span class="hud-value accent" id="score-val">0</span>
+      </div>
+
+      <div class="hud-stat" style="flex:1; padding: 0 12px;">
+        <div class="bar-label" style="width:100%;">
+          <span>Engagement</span>
+          <span id="eng-pct">50%</span>
+        </div>
+        <div class="bar-track" style="width:100%;">
+          <div class="bar-fill" id="eng-bar" style="width:50%"></div>
+        </div>
+      </div>
+
+      <div class="hud-stat">
+        <span class="hud-label">Lvl</span>
+        <span class="hud-value warn" id="level-val">1</span>
+      </div>
+
+      <!-- Timer -->
+      <div class="timer-ring-wrap">
+        <svg width="46" height="46" viewBox="0 0 46 46">
+          <circle class="timer-ring-bg" cx="23" cy="23" r="20" />
+          <circle class="timer-ring-fill" id="timer-ring" cx="23" cy="23" r="20" />
+        </svg>
+        <div class="timer-number" id="timer-val">15</div>
+      </div>
+    </div>
+
+    <!-- Streak -->
+    <div class="streak-badge hidden" id="streak-badge">🔥 <span id="streak-num">0</span>× streak</div>
+
+    <!-- Level banner -->
+    <div class="level-banner" id="level-banner">Level up! Posts are getting trickier…</div>
+
+    <!-- Post card area -->
+    <div class="post-area" id="post-area">
+      <div class="empty-state">Loading feed…</div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions">
+      <button class="action-btn boost" onclick="handleAction('boost')">
+        <span class="action-icon">🚀</span>
+        Boost
+      </button>
+      <button class="action-btn hide" onclick="handleAction('hide')">
+        <span class="action-icon">🙈</span>
+        Hide
+      </button>
+      <button class="action-btn skip" onclick="handleAction('skip')">
+        <span class="action-icon">⏭️</span>
+        Skip
+      </button>
+    </div>
+  </div>
+
+
+  <!-- end screen -->
+  <div id="end-screen" class="screen">
+    <div class="end-profile-card">
+      <div class="end-emoji" id="end-emoji">🏆</div>
+      <div class="end-title" id="end-title">Game Over</div>
+      <div class="end-subtitle" id="end-subtitle">The user rage-quit.</div>
+      <div class="score-display">
+        <span class="score-label">Final Score</span>
+        <span class="score-number" id="final-score">0</span>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <span class="stat-val g" id="stat-boosted">0</span>
+        <span class="stat-lbl">Boosted</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-val r" id="stat-hidden">0</span>
+        <span class="stat-lbl">Hidden</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-val y" id="stat-skipped">0</span>
+        <span class="stat-lbl">Skipped</span>
+      </div>
+    </div>
+
+    <div class="end-msg" id="end-msg"></div>
+
+    <div class="btn-row">
+      <button class="btn" onclick="startGame()">Play Again</button>
+      <button class="btn secondary" onclick="showScreen('start-screen')">Main Menu</button>
+    </div>
+  </div>
+
+
+  <!-- Feedback flash -->
+  <div class="feedback-flash" id="feedback-flash"></div>
+
+
+  <!-- scripts -->
+  <script src="js/script.js"></script>
+</body>
+
+</html>
