@@ -1,28 +1,36 @@
 :root {
-      --bg: #F0F2F5;
-      --surface: #FFFFFF;
-      --card: #FFFFFF;
-      --border: #E4E6EB;
-      --accent: #1877F2;
-      /* Facebook blue */
-      --accent2: #E7240A;
-      /* notification red */
-      --green: #42B883;
-      --warn: #F7B928;
-      --muted: #8A8D91;
-      --text: #050505;
-      --text-dim: #65676B;
-      --sidebar: #FFFFFF;
+      --bg: #0e0e10;
+      --surface: #18181b;
+      --card: #1f1f23;
+      --surface-raised: #27272a;
+      --surface-hover: #303035;
+      --border: #2e2e33;
+      --accent: #5b9cf5;
+      --accent-hover: #4a8de8;
+      --accent2: #f06555;
+      --green: #4ade80;
+      --warn: #fbbf24;
+      --muted: #71717a;
+      --text: #f4f4f5;
+      --text-dim: #a1a1aa;
+      --sidebar: #18181b;
       --radius: 12px;
       --transition: 0.2s ease;
       --font: 'DM Sans', -apple-system, sans-serif;
       --font-serif: 'DM Serif Display', serif;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      color-scheme: dark;
     }
 
     body {
@@ -48,7 +56,7 @@
       justify-content: space-between;
       padding: 0 16px;
       height: 56px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+      box-shadow: var(--shadow-sm);
     }
 
     .topnav-logo {
@@ -69,7 +77,7 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: var(--bg);
+      background: var(--surface-raised);
       border: none;
       cursor: default;
       display: flex;
@@ -95,7 +103,7 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #1877F2, #0d5abf);
+      background: linear-gradient(135deg, var(--accent), #3d7fd4);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -128,7 +136,7 @@
 
     .start-profile-card {
       width: 100%;
-      background: var(--surface);
+      background: var(--card);
       border-radius: var(--radius);
       border: 1px solid var(--border);
       overflow: hidden;
@@ -137,7 +145,7 @@
     .profile-cover {
       width: 100%;
       height: 100px;
-      background: linear-gradient(135deg, #1877F2 0%, #0d5abf 60%, #E7240A 100%);
+      background: linear-gradient(135deg, #3d7fd4 0%, #2a5a9e 55%, #c94d42 100%);
       position: relative;
     }
 
@@ -161,8 +169,8 @@
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #1877F2, #42B883);
-      border: 4px solid white;
+      background: linear-gradient(135deg, var(--accent), var(--green));
+      border: 4px solid var(--surface);
       margin-top: -40px;
       display: flex;
       align-items: center;
@@ -213,7 +221,7 @@
 
     .rules-section {
       width: 100%;
-      background: var(--surface);
+      background: var(--card);
       border-radius: var(--radius);
       border: 1px solid var(--border);
       padding: 16px;
@@ -235,7 +243,7 @@
     }
 
     .rule-card {
-      background: var(--bg);
+      background: var(--surface-raised);
       border-radius: 10px;
       padding: 14px;
       font-size: 0.78rem;
@@ -272,8 +280,8 @@
     }
 
     .btn:hover {
-      background: #166FE5;
-      box-shadow: 0 4px 16px rgba(24, 119, 242, 0.35);
+      background: var(--accent-hover);
+      box-shadow: 0 4px 16px rgba(91, 156, 245, 0.3);
       transform: translateY(-1px);
     }
 
@@ -282,14 +290,14 @@
     }
 
     .btn.secondary {
-      background: var(--bg);
+      background: var(--surface-raised);
       color: var(--text);
       border: 1px solid var(--border);
       font-weight: 600;
     }
 
     .btn.secondary:hover {
-      background: #e4e6eb;
+      background: var(--surface-hover);
       box-shadow: none;
     }
 
@@ -302,7 +310,7 @@
     /* HUD — styled as the old notification/stories row */
     .hud {
       width: 100%;
-      background: var(--surface);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 12px 16px;
@@ -431,12 +439,12 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: #FFF3E0;
-      border: 1px solid #FFD08A;
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.35);
       border-radius: 99px;
       padding: 4px 12px;
       font-size: 0.7rem;
-      color: #E65100;
+      color: #fbbf24;
       font-weight: 600;
       transition: opacity 0.3s;
     }
@@ -448,8 +456,8 @@
     /* Level banner */
     .level-banner {
       width: 100%;
-      background: #E7F3FF;
-      border: 1px solid #B3D4FF;
+      background: rgba(91, 156, 245, 0.12);
+      border: 1px solid rgba(91, 156, 245, 0.35);
       border-radius: 10px;
       padding: 10px 14px;
       font-size: 0.78rem;
@@ -487,14 +495,14 @@
 
     .post-card {
       width: 100%;
-      background: var(--surface);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 16px;
       position: relative;
       animation: cardIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
       overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      box-shadow: var(--shadow-sm);
     }
 
     @keyframes cardIn {
@@ -514,7 +522,7 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: var(--bg);
+      background: var(--surface-raised);
       border: 1px solid var(--border);
       border-radius: 99px;
       padding: 3px 10px;
@@ -549,7 +557,7 @@
       align-items: center;
       justify-content: center;
       font-size: 1.2rem;
-      background: var(--bg);
+      background: var(--surface-raised);
       border: 1px solid var(--border);
       flex-shrink: 0;
     }
@@ -627,7 +635,7 @@
     }
 
     .reaction-pill {
-      background: var(--bg);
+      background: var(--surface-raised);
       border-radius: 99px;
       padding: 2px 4px;
       font-size: 0.75rem;
@@ -639,11 +647,11 @@
       top: 14px;
       right: 14px;
       font-size: 0.6rem;
-      color: rgba(0, 0, 0, 0.15);
+      color: rgba(255, 255, 255, 0.12);
       letter-spacing: 1px;
       text-transform: uppercase;
       font-weight: 600;
-      background: var(--bg);
+      background: var(--surface-raised);
       padding: 2px 6px;
       border-radius: 4px;
       border: 1px solid var(--border);
@@ -670,9 +678,9 @@
       align-items: center;
       gap: 5px;
       transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
-      background: var(--surface);
+      background: var(--card);
       color: var(--text-dim);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-sm);
     }
 
     .action-btn .action-icon {
@@ -685,20 +693,20 @@
 
     .action-btn.boost:hover {
       border-color: var(--accent);
-      background: #E7F3FF;
+      background: rgba(91, 156, 245, 0.15);
       color: var(--accent);
     }
 
     .action-btn.hide:hover {
       border-color: var(--accent2);
-      background: #FFF0EE;
+      background: rgba(240, 101, 85, 0.15);
       color: var(--accent2);
     }
 
     .action-btn.skip:hover {
-      border-color: #888;
-      background: var(--bg);
-      color: #555;
+      border-color: var(--muted);
+      background: var(--surface-hover);
+      color: var(--text-dim);
     }
 
     .action-btn:active {
@@ -711,7 +719,7 @@
       top: 72px;
       left: 50%;
       transform: translateX(-50%) translateY(-8px);
-      background: var(--surface);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 12px 24px;
@@ -721,7 +729,7 @@
       opacity: 0;
       pointer-events: none;
       z-index: 500;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      box-shadow: var(--shadow-lg);
       white-space: nowrap;
       text-align: center;
     }
@@ -772,7 +780,7 @@
 
     .end-profile-card {
       width: 100%;
-      background: var(--surface);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 24px 20px;
@@ -808,7 +816,7 @@
     }
 
     .score-display {
-      background: var(--bg);
+      background: var(--surface-raised);
       border-radius: 12px;
       padding: 18px 24px;
       display: inline-flex;
@@ -841,7 +849,7 @@
     }
 
     .stat-box {
-      background: var(--surface);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 14px 10px;
@@ -849,7 +857,7 @@
       flex-direction: column;
       align-items: center;
       gap: 4px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-sm);
     }
 
     .stat-val {
@@ -879,14 +887,14 @@
 
     .end-msg {
       width: 100%;
-      background: var(--surface);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 16px;
       font-size: 0.83rem;
       color: var(--text-dim);
       line-height: 1.75;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-sm);
     }
 
     .btn-row {
