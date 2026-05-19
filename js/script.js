@@ -18,7 +18,7 @@ const POSTS = [
       {
         type: 'quality', color: '#42B883', emoji: '🎨',
         user: 'Amara Creates', handle: '@amaracreates', time: '12m',
-        text: 'Six months of work. Finally finished my mural in Braamfontein. Come see it in person — corner of Juta & De Beer.',
+        text: 'Six months of work. Finally finished my mural in Braamfontein. Come see it in person - corner of Juta & De Beer.',
         likes: '18K', comments: '2.1K', shares: '4.5K',
         correct: 'boost',
         feedback: { boost: '✅ Viral local content! +20', hide: '❌ Hidden quality post. -15', skip: '⏭️ Neutral' }
@@ -42,7 +42,7 @@ const POSTS = [
       {
         type: 'ad', color: '#F7B928', emoji: '👗',
         user: 'StyleCorner_ZA', handle: '@stylecorner_za', time: '30m',
-        text: 'These pieces literally changed how I dress. The quality is insane 😍 [link in bio] — not sponsored btw lol',
+        text: 'These pieces literally changed how I dress. The quality is insane 😍 [link in bio] - not sponsored btw lol',
         likes: '900', comments: '120', shares: '200',
         correct: 'hide', tricky: true, adLabel: 'Sponsored',
         feedback: { boost: '❌ Boosted a disguised ad. User trust -15', hide: '✅ Spotted the hidden ad. +15', skip: '⚠️ Sneaky ad stayed in feed. -8' }
@@ -82,7 +82,7 @@ const POSTS = [
       {
         type: 'ad', color: '#F7B928', emoji: '💪',
         user: 'Thabo Fitness', handle: '@thabofitness_real', time: '1d',
-        text: 'My 12-week transformation — no shortcuts, just discipline. What I ate, how I trained. Full breakdown 👇',
+        text: 'My 12-week transformation - no shortcuts, just discipline. What I ate, how I trained. Full breakdown 👇',
         likes: '22K', comments: '3.1K', shares: '8.8K',
         correct: 'hide', tricky: true, adLabel: 'Paid Partnership',
         feedback: { boost: '❌ Disguised product ad boosted. -15', hide: '✅ Spotted the paid partnership. +15', skip: '⚠️ Ad stays in feed. -8' }
@@ -176,17 +176,17 @@ const POSTS = [
     }
 
     function updateTimerUI() {
-      const t = state.timeLeft;
+      const time = state.timeLeft;
       const limit = getTimeLimit();
-      const el = document.getElementById('timer-val');
+      const element = document.getElementById('timer-val');
       const ring = document.getElementById('timer-ring');
-      el.textContent = t;
+      element.textContent = time;
       const circumference = 125.6; // 2π×20
-      const offset = circumference * (1 - t / limit);
+      const offset = circumference * (1 - time / limit);
       ring.style.strokeDashoffset = offset;
       ring.className = 'timer-ring-fill';
-      if (t <= 3) ring.classList.add('low');
-      else if (t <= 6) ring.classList.add('mid');
+      if (time <= 3) ring.classList.add('low');
+      else if (time <= 6) ring.classList.add('mid');
     }
 
     // update engagement and check for game over
@@ -197,14 +197,14 @@ const POSTS = [
     }
 
     function updateEngagementUI() {
-      const pct = state.engagement;
+      const percentage = state.engagement;
       const bar = document.getElementById('eng-bar');
       const label = document.getElementById('eng-pct');
-      bar.style.width = pct + '%';
-      label.textContent = pct + '%';
+      bar.style.width = percentage + '%';
+      label.textContent = percentage + '%';
       bar.className = 'bar-fill';
-      if (pct < 25) bar.classList.add('low');
-      else if (pct < 50) bar.classList.add('mid');
+      if (percentage < 25) bar.classList.add('low');
+      else if (percentage < 50) bar.classList.add('mid');
     }
 
     function updateScoreUI() { document.getElementById('score-val').textContent = state.score; }
@@ -218,11 +218,11 @@ const POSTS = [
     }
 
     function showFeedback(msg, type = 'good') {
-      const el = document.getElementById('feedback-flash');
-      el.textContent = msg;
-      el.className = 'feedback-flash ' + (type === 'bad' ? 'bad' : type === 'warn' ? 'warn' : '');
-      el.classList.add('show');
-      setTimeout(() => el.classList.remove('show'), 1100);
+      const element = document.getElementById('feedback-flash');
+      element.textContent = msg;
+      element.className = 'feedback-flash ' + (type === 'bad' ? 'bad' : type === 'warn' ? 'warn' : '');
+      element.classList.add('show');
+      setTimeout(() => element.classList.remove('show'), 1100);
     }
 
     // render the current post card
@@ -272,7 +272,7 @@ const POSTS = [
       clearInterval(state.timerInterval);
 
       const post = state.shuffledPosts[state.postIndex];
-      const feedbackMsg = post.feedback[action];
+      const feedbackMessage = post.feedback[action];
       const isCorrect = action === post.correct;
 
       if (isCorrect) {
@@ -285,22 +285,22 @@ const POSTS = [
         if (action === 'boost') changeEngagement(+15);
         else if (action === 'hide') changeEngagement(+10);
         else changeEngagement(0);
-        showFeedback(feedbackMsg, 'good');
+        showFeedback(feedbackMessage, 'good');
         if (action === 'boost') state.boosted++;
         else if (action === 'hide') state.hidden++;
         else state.skipped++;
       } else {
         const penalty = post.tricky ? 8 : 15;
-        if (feedbackMsg.includes('-25')) changeEngagement(-25);
-        else if (feedbackMsg.includes('-20')) changeEngagement(-20);
-        else if (feedbackMsg.includes('-15')) changeEngagement(-15);
-        else if (feedbackMsg.includes('-12')) changeEngagement(-12);
-        else if (feedbackMsg.includes('-10')) changeEngagement(-10);
-        else if (feedbackMsg.includes('-8')) changeEngagement(-8);
-        else if (feedbackMsg.includes('-5')) changeEngagement(-5);
+        if (feedbackMessage.includes('-25')) changeEngagement(-25);
+        else if (feedbackMessage.includes('-20')) changeEngagement(-20);
+        else if (feedbackMessage.includes('-15')) changeEngagement(-15);
+        else if (feedbackMessage.includes('-12')) changeEngagement(-12);
+        else if (feedbackMessage.includes('-10')) changeEngagement(-10);
+        else if (feedbackMessage.includes('-8')) changeEngagement(-8);
+        else if (feedbackMessage.includes('-5')) changeEngagement(-5);
         else changeEngagement(-penalty);
         state.streak = 0;
-        showFeedback(feedbackMsg, feedbackMsg.includes('⚠️') ? 'warn' : 'bad');
+        showFeedback(feedbackMessage, feedbackMessage.includes('⚠️') ? 'warn' : 'bad');
         if (action === 'boost') state.boosted++;
         else if (action === 'hide') state.hidden++;
         else state.skipped++;
@@ -320,7 +320,7 @@ const POSTS = [
         state.level = newLevel;
         updateLevelUI();
         const banner = document.getElementById('level-banner');
-        const messages = ['', '', 'Level 2 — Ads in disguise incoming…', 'Level 3 — Misinformation & rage-bait. Stay sharp.'];
+        const messages = ['', '', 'Level 2 - Ads in disguise incoming…', 'Level 3 - Misinformation & rage-bait. Stay sharp.'];
         banner.textContent = messages[state.level] || 'Level up! Posts are getting trickier…';
         banner.classList.add('visible');
         setTimeout(() => banner.classList.remove('visible'), 2500);
@@ -362,28 +362,28 @@ const POSTS = [
       document.getElementById('stat-hidden').textContent = state.hidden;
       document.getElementById('stat-skipped').textContent = state.skipped;
 
-      const titleEl = document.getElementById('end-title');
-      const subtitleEl = document.getElementById('end-subtitle');
-      const msgEl = document.getElementById('end-msg');
-      const emojiEl = document.getElementById('end-emoji');
+      const titleElement = document.getElementById('end-title');
+      const subtitleElement = document.getElementById('end-subtitle');
+      const msgElement = document.getElementById('end-msg');
+      const emojiElement = document.getElementById('end-emoji');
 
       if (won) {
-        emojiEl.textContent = '🏆';
-        titleEl.textContent = 'Algorithm Ace';
-        titleEl.className = 'end-title win';
-        subtitleEl.textContent = 'You survived the feed.';
-        msgEl.textContent = `You kept the engagement above zero and made it through all ${POSTS.length} posts. Your score of ${state.score} reflects every correct call, time bonus, and streak combo. The real algorithms wish they were this good.`;
+        emojiElement.textContent = '🏆';
+        titleElement.textContent = 'Algorithm Ace';
+        titleElement.className = 'end-title win';
+        subtitleElement.textContent = 'You survived the feed.';
+        msgElement.textContent = `You kept the engagement above zero and made it through all ${POSTS.length} posts. Your score of ${state.score} reflects every correct call, time bonus, and streak combo. The real algorithms wish they were this good.`;
       } else {
-        emojiEl.textContent = '😵';
-        titleEl.textContent = 'User Rage-Quit';
-        titleEl.className = 'end-title lose';
-        subtitleEl.textContent = 'Engagement hit zero.';
+        emojiElement.textContent = '😵';
+        titleElement.textContent = 'User Rage-Quit';
+        titleElement.className = 'end-title lose';
+        subtitleElement.textContent = 'Engagement hit zero.';
         const score = state.score;
         let msg = '';
         if (score < 50) msg = 'The feed was a disaster. Too many bad calls too quickly.';
-        else if (score < 150) msg = 'You were getting there — but one too many misjudgements crashed the engagement.';
+        else if (score < 150) msg = 'You were getting there - but one too many misjudgements crashed the engagement.';
         else msg = 'So close! Great score but the engagement meter ran dry at the wrong moment.';
-        msgEl.textContent = msg + ' Try again — level 3 posts are the real test.';
+        msgElement.textContent = msg + ' Try again - level 3 posts are the real test.';
       }
 
       showScreen('end-screen');
