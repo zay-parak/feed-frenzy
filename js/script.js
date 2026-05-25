@@ -266,7 +266,7 @@ const POSTS = [
   `;
     }
 
-    // parse user action and calculate points/penalties
+    // handle user action and calculate points/penalties
     function handleAction(action) {
       if (!state.active) return;
       clearInterval(state.timerInterval);
